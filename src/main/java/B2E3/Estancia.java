@@ -27,35 +27,24 @@ public class Estancia
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+
 
     public Planta getPlanta() {
         return planta;
     }
 
-    public void setPlanta(Planta planta) {
-        this.planta = planta;
-    }
-/*
-    public Set<Sensor> getSensores() {
+    public HashMap<String, Sensor> getSensores() {
         return sensores;
     }
-*/
 
-    public void setSensores(HashMap<String, Sensor> sensores) {
-        this.sensores = sensores;
-    }
+
 
     public float getCoste() {
         //actualizarCoste();
         return coste;
     }
 
-    public void setCoste(float coste) {
-        this.coste = coste;
-    }
+
 
 
     // METODOS FUNCIONALES
@@ -67,7 +56,10 @@ public class Estancia
             for (String senso : sensores.keySet())
             {
                 Sensor sensor = sensores.get(senso);
-                res += sensor.getPrecio();
+                if(sensor.getPrecio() != null)
+                {
+                    res += sensor.getPrecio();
+                }
             }
         }
         return res;
@@ -75,13 +67,14 @@ public class Estancia
 
     //  dar de alta un sensor, teniendo en cuenta
     //el criterio de igualdad definido en la clase Sensor.
-    public boolean darAlta(String id,Sensor sensor) {
+    public boolean darAlta(Sensor sensor) {
         //tenemos que ir recorriendo el array de sensores viendo que no haya ninguno
         //igual en la misma estancia
         if (sensores == null) {
             HashMap<String, Sensor> sensores = new HashMap<String, Sensor>();
             this.sensores = sensores;
-            sensores.put(id, sensor);
+            sensores.put(sensor.getId(), sensor);
+            coste = actualizarCoste();
         } else {
             for (String senso : sensores.keySet())
             {
@@ -92,7 +85,7 @@ public class Estancia
                     }
                 }
             }
-            sensores.put(id, sensor);
+            sensores.put(sensor.getId(), sensor);
         }
         return true;
     }
@@ -341,9 +334,9 @@ public class Estancia
     public String toString() {
         String respuesta = null;
         if (nombre != null) {
-            respuesta = "nombre: " + getNombre() + "\n";
+            respuesta = "nombre estancia: " + getNombre() + "\n";
         }
-        respuesta += "planta: " + getPlanta() + "\n";
+        respuesta += "planta: " + "\n" + planta.toString();
         if (sensores != null) {
             respuesta = respuesta + "sensores:  ";
             respuesta = respuesta + "[";

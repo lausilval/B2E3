@@ -1,11 +1,8 @@
 package B2E3;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
-public class Planta
-{
+public class Planta {
     // ATRIBUTOS
     private int numero; // numero de la planta
     private String tipo; // tipo de planta
@@ -18,33 +15,26 @@ public class Planta
 
 
     // CONSTRUCTORES
-    public Planta(int numero, String tipo, Edificio edificio, HashMap<String, Estancia> estancias)
-    {
+    public Planta(int numero, String tipo, Edificio edificio, HashMap<String, Estancia> estancias) {
         this.numero = numero;
-        if(tipo != null)
-        {
-            if(tipo.equals("oficinas") || tipo.equals("viviendas libres") || tipo.equals("viviendas de proteccion oficial") || tipo.equals("administracion"))
-            {
+        if (tipo != null) {
+            if (tipo.equals("oficinas") || tipo.equals("viviendas libres") || tipo.equals("viviendas de proteccion oficial") || tipo.equals("administracion")) {
                 this.tipo = tipo;
             }
         }
-        if(edificio != null)
-        {
+        if (edificio != null) {
             this.edificio = edificio;
         }
-        if(estancias != null)
-        {
+        if (estancias != null) {
             this.estancias = estancias;
         }
 
     }
-    public Planta(int numero, String tipo)
-    {
+
+    public Planta(int numero, String tipo) {
         this.numero = numero;
-        if(tipo != null)
-        {
-            if(tipo.equals("oficinas") || tipo.equals("viviendas libres") || tipo.equals("viviendas de proteccion oficial") || tipo.equals("administracion"))
-            {
+        if (tipo != null) {
+            if (tipo.equals("oficinas") || tipo.equals("viviendas libres") || tipo.equals("viviendas de proteccion oficial") || tipo.equals("administracion")) {
                 this.tipo = tipo;
             }
         }
@@ -84,8 +74,7 @@ public class Planta
     }
 
     public void setTipo(String tipo) {
-        if(tipo.equals("oficinas") || tipo.equals("viviendas libres") || tipo.equals("viviendas de proteccion oficial") || tipo.equals("administracion"))
-        {
+        if (tipo.equals("oficinas") || tipo.equals("viviendas libres") || tipo.equals("viviendas de proteccion oficial") || tipo.equals("administracion")) {
             this.tipo = tipo;
         }
     }
@@ -97,22 +86,45 @@ public class Planta
 
     // METODOS FUNCIONALES
 
+    public float actualizarCostePlanta() {
+        float res = 0f;
+        if (this.estancias != null) {
+            for (String estan : estancias.keySet())
+            {
+                Estancia estancia = estancias.get(estan);
+                res += estancia.getPlanta().getPresupuesto();
+            }
+        }
+        return res;
+    }
+
     // dar de alta un conjunto de estancias estancias. Se deberá comprobar si el número de planta coincide
     //con el identificador la planta en la que se dará de alta. En caso de que no sea así, se devolverá
     //false.
     public boolean darAltaEstancia(ArrayList<Estancia> estancias)
     {
-        if(estancias != null)
-        {
-            this.estancias = new HashMap<>();
-            for(Estancia estan: estancias)
-            {
-                /*** NO SE ***/
-                /*int numPlanta = (int) estan.getPlanta();
-                if(estan.getPlanta() != (Planta) this.numero)
+        //boolean respuesta = true;
+        int cont = 0;
+        if (estancias != null) {
+            //HashMap<String, Estancia> estanciaMap = new HashMap<>();
+            for (Estancia estan : estancias) {
+                if (estan.getPlanta().getNumero() == this.numero)
                 {
-
-                }*/
+                   darAltaEstancia(estan);
+                   System.out.println("\tEstancia " + estan.getNombre() + " -> " + true);
+                   cont++;
+                }
+                else
+                {
+                    System.out.println("\tEstancia " + estan.getNombre() + " -> " + false);
+                }
+            }
+            if(cont > 0)
+            {
+                return true;
+            }
+            else {
+                return false;
             }
         }
         return false;
@@ -121,24 +133,76 @@ public class Planta
 
     // dar de alta una estancia. Se deberá comprobar si el número de planta coincide con el identificador la planta en
     //la que se dará de alta. En caso de que no sea así, se devolverá false.
-    public boolean darAltaEstancia(Estancia estancia)
-    {
+    public boolean darAltaEstancia(Estancia estancia) {
+        if (estancias != null)
+        {
+            for (String estan : estancias.keySet())
+            {
+                Estancia estancia1 = estancias.get(estan);
+                if(estancia1.equals(estancia))
+                {
+                   return false;
+                }
+            }
+            if (estancia.getPlanta().getNumero() == this.numero)
+            {
+                this.estancias.put(estancia.getNombre(), estancia);
+                presupuesto = actualizarCostePlanta();
+                return true;
+            }
+        } else {
+            HashMap<String, Estancia> estanciaMap = new HashMap<>();
+            if(estancia.getPlanta().getNumero() == this.numero)
+            {
+                estanciaMap.put(estancia.getNombre(), estancia);
+                this.estancias = estanciaMap;
+                return true;
+            }
+        }
         return false;
     }
 
     // dar de alta un sensor
     //en la estancia con identificador id. Hay que tener en cuenta que al dar de alta un sensor es necesario
     //actualizar el presupuesto de la planta
-    public void darAltaSensor(String id, Sensor sensor)
+    public void darAltaSensor(String nombreEstancia /*id estancia*/, Sensor sensor)
     {
-        return;
+        boolean respuesta = false;
+         if(estancias != null)
+         {
+             for(String estan: estancias.keySet())
+             {
+                 Estancia estancia1 = estancias.get(estan);
+                 if(estancia1.getNombre().equals(nombreEstancia))
+                 {
+                     respuesta = estancia1.darAlta(sensor);
+                     this.presupuesto += estancia1.actualizarCoste();
+                 }
+             }
+         }
+         if(respuesta)
+         {
+             System.out.println("el sensor con id: " + sensor.getId() + " se ha anhadido a la estancia: " + nombreEstancia);
+         }
+         else {
+             System.out.println("el sensor con id: " + sensor.getId() + " no se ha podido anhadir a la estancia: " + nombreEstancia);
+         }
     }
 
     // dar de alta un conjunto de sensores en la estancia con identificador id. Hay que tener en cuenta que
     //al dar de alta un sensor es necesario actualizar el presupuesto.
-    public void darAltaSensor(String id, ArrayList<Sensor> sensores)
+    public void darAltaSensor(String nombreEstancia, ArrayList<Sensor> sensores)
     {
-        return;
+        if(estancias != null)
+        {
+            for(Sensor senso: sensores)
+            {
+                darAltaSensor(nombreEstancia, senso);
+                Estancia estancia = estancias.get(nombreEstancia);
+                this.presupuesto +=  estancia.actualizarCoste();
+                actualizarCostePlanta();
+            }
+        }
     }
 
     //dar de baja a un sensor
@@ -146,51 +210,67 @@ public class Planta
     //necesario actualizar tanto el conjunto de sensores con problemas como presupuesto de la planta.
     public void darBajaSensor(String id, Sensor sensor)
     {
-        return;
+        if(estancias != null)
+        {
+            Set<Map.Entry<String, Estancia>> mapEstancia = estancias.entrySet();
+            Iterator<Map.Entry<String,Estancia>> value = mapEstancia.iterator();
+            while (value.hasNext())
+            {
+                Map.Entry<String, Estancia> nombreEstancia = value.next();
+                String sensor1 = nombreEstancia.getKey();
+
+                if(estancias.get(sensor1).getSensores().containsKey(id))
+                {
+                    estancias.get(sensor1).getSensores().replace(id, sensor);
+                    this.presupuesto += actualizarCostePlanta();
+                }
+            }
+         }
     }
 
 
     // devuelve el conjunto de sensores
     //de un determinado tipo que hay en la planta. Todas las iteraciones sobre los datos deben hacerse
     //usando un iterator sobre los valores.
-    public Set<Sensor> sensoresTipo(String tipo)
-    {
-        return null;
+    public Set<Sensor> sensoresTipo(String tipo) {
+        Set<Sensor> respuesta = new HashSet<>();
+
+        Iterator<String> value = estancias.keySet().iterator();
+        while(value.hasNext())
+        {
+            String nombreEstancia = value.next();
+            Estancia estancia = estancias.get(nombreEstancia);
+            respuesta.add((Sensor) estancia.sensoresTipo(tipo));
+        }
+        return respuesta;
     }
 
     // devuelve los tipos de
     //sensores que han tenido que ser substituidos con mayor frecuencia en la planta, es decir, los tipos
     //de sensores que son más defectuosos. Todas las iteraciones sobre los datos deben hacerse usando
     //un iterator sobre las claves.
-    public Set<String> tipoSensoresMasDefectuosos()
-    {
+    public Set<String> tipoSensoresMasDefectuosos() {
         return null;
     }
 
     @Override
     // donde se considera que dos plantas son
     //iguales si sus números son iguales y si el edificio en el que se encuentra es el mismo.
-    public boolean equals(Object object)
-    {
-        if(this == object)
-        {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (object == null)
-        {
+        if (object == null) {
             return false;
         }
-        if(getClass() != object.getClass())
-        {
+        if (getClass() != object.getClass()) {
             return false;
         }
         final Planta other = (Planta) object;
-        if(this.numero != other.numero)
-        {
+        if (this.numero != other.numero) {
             return false;
         }
-        if(!this.edificio.equals(other.edificio))
-        {
+        if (!this.edificio.equals(other.edificio)) {
             return false;
         }
         return true;
@@ -198,26 +278,21 @@ public class Planta
 
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         String respuesta = null;
 
-        respuesta = "numero: " + getNumero() + "\n";
-        if(tipo != null)
-        {
-            respuesta += "tipo: " + getTipo() + "\n";
+        respuesta = "\t" + "numero: " + getNumero() + "\n";
+        if (tipo != null) {
+            respuesta +="\t" +  "tipo: " + getTipo() + "\n";
         }
-        if(edificio != null)
-        {
-            respuesta += "edificio: " + getEdificio() + "\n";
+        if (edificio != null) {
+            respuesta +="\t" +  "edificio: " + getEdificio() + "\n";
         }
-        if(estancias != null)
-        {
-            respuesta += "estancias: ";
+        if (estancias != null) {
+            respuesta +="\t" +  "estancias: ";
             respuesta += "[";
             int i = 0;
-            for (String estancia : estancias.keySet())
-            {
+            for (String estancia : estancias.keySet()) {
                 Estancia estancia1 = estancias.get(estancia);
                 if (estancia1.getNombre() != null) {
                     respuesta = respuesta + estancia1.getNombre();
@@ -229,14 +304,15 @@ public class Planta
             }
             respuesta += "]" + "\n";
         }
-        respuesta += "presupuesto: " + getPresupuesto() + "\n";
-        if (sensoresConProblemas != null)
+        if(presupuesto != 0)
         {
-            respuesta += "sensoresConProblemas: ";
+            respuesta += "\t" + "presupuesto: " + getPresupuesto() + "\n";
+        }
+        if (sensoresConProblemas != null) {
+            respuesta += "\t" + "sensoresConProblemas: ";
             respuesta += "[";
             int i = 0;
-            for (String sensor : sensoresConProblemas.keySet())
-            {
+            for (String sensor : sensoresConProblemas.keySet()) {
                 Sensor sensor1 = sensoresConProblemas.get(sensor);
                 if (sensor1.getId() != null) {
                     respuesta = respuesta + sensor1.getId();
@@ -251,6 +327,5 @@ public class Planta
         }
         return respuesta;
     }
-
 
 }

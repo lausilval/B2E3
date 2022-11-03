@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e193eda7-7fca-4349-8fbd-51cadfa27794" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/B2E3/Edificio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/B2E3/Estancia.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/B2E3/Planta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/B2E3/PrincipalB2E3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/B2E3/Sensor.java" afterDir="false" />
+    <list default="true" id="e193eda7-7fca-4349-8fbd-51cadfa27794" name="Changes" comment="version inicial">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B2E3/Edificio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B2E3/Edificio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B2E3/Estancia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B2E3/Estancia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B2E3/Planta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B2E3/Planta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B2E3/PrincipalB2E3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B2E3/PrincipalB2E3.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +26,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/B2E3/PrincipalB2E3.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -46,7 +43,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false"
+    "WebServerToolWindowFactoryState": "false",
+    "full.screen.before.presentation.mode": "false"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -57,8 +55,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1666796640795</updated>
-      <workItem from="1666796642723" duration="4151000" />
+      <workItem from="1666796642723" duration="4447000" />
+      <workItem from="1666854807531" duration="8472000" />
+      <workItem from="1667130604620" duration="14000" />
+      <workItem from="1667205050748" duration="6579000" />
+      <workItem from="1667413234098" duration="519000" />
+      <workItem from="1667468272078" duration="1208000" />
+      <workItem from="1667483467474" duration="7869000" />
     </task>
+    <task id="LOCAL-00001" summary="version inicial">
+      <created>1666801032630</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666801032630</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -74,5 +86,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="version inicial" />
+    <option name="LAST_COMMIT_MESSAGE" value="version inicial" />
   </component>
 </project>
