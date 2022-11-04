@@ -236,7 +236,7 @@ public class Sensor
             respuesta +=  "]" + "\n";
 
         }
-        if(precio != 0f)
+        if(precio != null)
         {
             respuesta += "precio: " + getPrecio() + "\n";
         }

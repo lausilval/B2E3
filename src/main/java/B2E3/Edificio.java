@@ -19,9 +19,16 @@ public class Edificio {
             this.id = id;
         }
         if (rango != null) {
-            if ((rango[0] > -2) && (rango[1] > 6)) {
-                this.rango = rango;
+            int[] listaRango = new int[2];
+            if(rango[0] >= -2)
+            {
+                listaRango[0] = rango[0];
             }
+            if(rango[1] <= 6)
+            {
+                listaRango[1] = rango[1];
+            }
+            this.rango = listaRango;
         }
         if (plantas != null) {
             HashMap<Integer, Planta> plantaMap = new HashMap<>();
@@ -58,7 +65,7 @@ public class Edificio {
 
     // SETTERS
     public void setRango(int[] rango) {
-        if ((rango[0] > -2) && (rango[1] > 6)) {
+        if ((rango[0] >= -2) && (rango[1] <= 6)) {
             this.rango = rango;
         }
     }
@@ -83,17 +90,17 @@ public class Edificio {
             for(Integer numero : plantas.keySet())
             {
                 Planta planta1 = plantas.get(numero);
-                if(planta1.getNumero() == numero)
+                if(planta1.getNumero() == planta.getNumero())
                 {
                     return false;
                 }
-                if(planta1.getEdificio().equals(planta.getEdificio()))
-                {
-                    return false;
-                }
+
             }
-            this.plantas.put(planta.getNumero(), planta);
-            return true;
+            if((planta.getNumero() >= -2) && (planta.getNumero() <= 6))
+            {
+                this.plantas.put(planta.getNumero(), planta);
+                return true;
+            }
         }
         return false;
     }
@@ -102,25 +109,33 @@ public class Edificio {
     //dadas de alta en el edificio.
     public int[] plantasNoAlta() {
 
-        int[] respuesta = new int[10];
-        ArrayList<Integer> aux = new ArrayList<>();
-        int[] plantanum = {-2, -1, 0, 1, 2, 3, 4, 5, 6};
+        ArrayList<Integer> respuesta = new ArrayList<>();
+        ArrayList<Integer> rangoAux = new ArrayList<>();
+
         // tienes un rango y tienes que ver que nº de ese rango no esta ocupado
-        for(Integer num: plantas.keySet())
+        if(rango != null)
         {
-            for(int i=0;i< respuesta.length; i++)
+            for(int r=rango[0]; r <= rango[1] ; r++)
             {
-                aux.add(num);
+                rangoAux.add(r);
             }
-        }
-        for(int j=0; j < plantanum.length; j++)
-        {
-            if(!aux.contains(plantanum[j]))
+            ArrayList<Integer> aux = new ArrayList<>(plantas.keySet());
+            for(int j=0; j < rangoAux.size(); j++)
             {
-                respuesta[j] = plantanum[j];
+                if(!aux.contains(rangoAux.get(j)))
+                {
+                    respuesta.add(rangoAux.get(j));
+                }
             }
+            int[] respuesta2 = new int[respuesta.size()];
+            for(int k=0; k < respuesta.size();k++)
+            {
+                respuesta2[k] = respuesta.get(k);
+            }
+            return respuesta2;
         }
-        return respuesta;
+        return null;
+
     }
 
     // obtiene las plantas que tienen un presupuesto mayor.

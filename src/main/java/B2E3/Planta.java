@@ -221,8 +221,11 @@ public class Planta {
 
                 if(estancias.get(sensor1).getSensores().containsKey(id))
                 {
-                    estancias.get(sensor1).getSensores().replace(id, sensor);
+                    //estancias.get(sensor1).getSensores().replace(id, sensor);
+                    estancias.get(sensor1).getSensores().remove(id);
+                    estancias.get(sensor1).getSensores().put(sensor.getId(), sensor);
                     this.presupuesto += actualizarCostePlanta();
+                    estancias.get(sensor1).actualizarCoste();
                 }
             }
          }
@@ -240,7 +243,10 @@ public class Planta {
         {
             String nombreEstancia = value.next();
             Estancia estancia = estancias.get(nombreEstancia);
-            respuesta.add((Sensor) estancia.sensoresTipo(tipo));
+            if(estancia.sensoresTipo(tipo) != null)
+            {
+                respuesta.addAll( estancia.sensoresTipo(tipo));
+            }
         }
         return respuesta;
     }

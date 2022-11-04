@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e193eda7-7fca-4349-8fbd-51cadfa27794" name="Changes" comment="version inicial">
+    <list default="true" id="e193eda7-7fca-4349-8fbd-51cadfa27794" name="Changes" comment="version 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/B2E3/Edificio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B2E3/Edificio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/B2E3/Estancia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B2E3/Estancia.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/B2E3/Planta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B2E3/Planta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/B2E3/PrincipalB2E3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B2E3/PrincipalB2E3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/B2E3/Sensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/B2E3/Sensor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,15 +39,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "full.screen.before.presentation.mode": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -61,7 +62,8 @@
       <workItem from="1667205050748" duration="6579000" />
       <workItem from="1667413234098" duration="519000" />
       <workItem from="1667468272078" duration="1208000" />
-      <workItem from="1667483467474" duration="7869000" />
+      <workItem from="1667483467474" duration="8147000" />
+      <workItem from="1667576673775" duration="4949000" />
     </task>
     <task id="LOCAL-00001" summary="version inicial">
       <created>1666801032630</created>
@@ -70,7 +72,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666801032630</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="version 2">
+      <created>1667496624969</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1667496624969</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,6 +98,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="version inicial" />
-    <option name="LAST_COMMIT_MESSAGE" value="version inicial" />
+    <MESSAGE value="version 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 2" />
   </component>
 </project>

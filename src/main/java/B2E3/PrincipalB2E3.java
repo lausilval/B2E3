@@ -1,7 +1,9 @@
 package B2E3;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 
 public class PrincipalB2E3 {
     public static void main(String[] args) {
@@ -208,66 +210,121 @@ public class PrincipalB2E3 {
         //s. Mostrar por pantalla las plantas que aún no están asignadas en el edificio.
         System.out.println("APARTADO S) -----------------------------------------------------------------------------------------------------------");
         int[] plantasS = edificio1.plantasNoAlta();
-        for (int i = 0; i< plantasS.length; i++)
-        {
-            if(plantasS[i] != 0) /////ESTA MAL !!!
-            {
-                System.out.println(plantasS[i]);
-            }
-        }
+        System.out.println("Las plantas que aun no han sido dadas de alta son: " + Arrays.toString(plantasS));
 
         //t. Mostrar por pantalla las características de la planta2.
-
+        System.out.println("APARTADO T) -----------------------------------------------------------------------------------------------------------");
+        System.out.println(planta2.toString());
 
         //u. Dar de baja el sensor8 de la planta2 y sustituirlo por sensor26.
+        System.out.println("APARTADO U) -----------------------------------------------------------------------------------------------------------");
+        System.out.println("La estancia en la que se encuentra el sensor8('107') es la 11 ('200')");
+        System.out.println(estancia11.toString());
 
+        planta2.darBajaSensor("107", sensor26);
 
+        System.out.println("Despues de cambiar el sensor '107'(sensor8) por el '109'(sensor26)...");
+        System.out.println(estancia11.toString());
         //v. Mostrar por pantalla las características de la planta2.
+        System.out.println("APARTADO V) -----------------------------------------------------------------------------------------------------------");
+        System.out.println(planta2.toString());
 
 
         //w. Dar de baja el sensor6 de la planta1 y substituirlo por sensor27.
+        System.out.println("APARTADO W) -----------------------------------------------------------------------------------------------------------");
+        System.out.println("La estancia en la que se encuentra el sensor6('105') es la 9 ('101')");
+        System.out.println(estancia9.toString());
 
+        planta1.darBajaSensor("105", sensor27);
+
+        System.out.println("Despues de cambiar el sensor '105'(sensor6) por el '110'(sensor27)...");
+        System.out.println(estancia9.toString());
 
         //x. Mostrar por pantalla las características de la planta1.
-
+        System.out.println("APARTADO X) -----------------------------------------------------------------------------------------------------------");
+        System.out.println(planta1.toString());
 
         //y. Dar de baja el sensor10 de la planta_1 y substituirlo por sensor28.
+        System.out.println("APARTADO Y) -----------------------------------------------------------------------------------------------------------");
+        System.out.println("La estancia en la que se encuentra el sensor10('200') es la 1 ('-100')");
+        System.out.println(estancia1.toString());
+
+        planta_1.darBajaSensor("200", sensor28);
+
+        System.out.println("Despues de cambiar el sensor '200'(sensor10) por el '209'(sensor28)...");
+        System.out.println(estancia1.toString());
 
 
         //z. Mostrar por pantalla las características de la planta_1.
+        System.out.println("APARTADO Z) -----------------------------------------------------------------------------------------------------------");
+        System.out.println(planta_1.toString());
 
 
         //aa. Dar de baja el sensor22 de la planta0 y substituirlo por sensor29.
+        System.out.println("APARTADO AA) -----------------------------------------------------------------------------------------------------------");
+        System.out.println("La estancia en la que se encuentra el sensor22('303') es la 4 ('000')");
+        System.out.println(estancia4.toString());
 
+        planta0.darBajaSensor("303", sensor29);
+
+        System.out.println("Despues de cambiar el sensor '303'(sensor22) por el '307'(sensor29)...");
+        System.out.println(estancia4.toString());
 
         //bb. Dar de baja el sensor29 de la planta0 y substituirlo por sensor30.
+        System.out.println("APARTADO BB) -----------------------------------------------------------------------------------------------------------");
+        System.out.println("La estancia en la que se encuentra el sensor29('307') es la 4 ('000')");
+        System.out.println(estancia4.toString());
 
+        planta0.darBajaSensor("307", sensor30);
+
+        System.out.println("Despues de cambiar el sensor '307'(sensor29) por el '308'(sensor30)...");
+        System.out.println(estancia4.toString());
 
         //cc. Dar de baja el sensor30 de la planta0 y substituirlo por sensor31.
+        System.out.println("APARTADO CC) -----------------------------------------------------------------------------------------------------------");
+        System.out.println("La estancia en la que se encuentra el sensor30('308') es la 4 ('000')");
+        System.out.println(estancia4.toString());
 
+        planta0.darBajaSensor("308", sensor31);
+
+        System.out.println("Despues de cambiar el sensor '308'(sensor29) por el '309'(sensor30)...");
+        System.out.println(estancia4.toString());
 
         //dd. Mostrar por pantalla las características de la planta0.
+        System.out.println("APARTADO DD) -----------------------------------------------------------------------------------------------------------");
+        System.out.println(planta0.toString());
 
 
+        /***TENER CUIDADO A PARTIR DE AQUI ***/
         //ee. Mostrar por pantalla los tipos de sensores más defectuosos de la planta0.
-
+        System.out.println("APARTADO EE) -----------------------------------------------------------------------------------------------------------");
+        Set<String> sensoresMasDesfectuososP0 = planta0.tipoSensoresMasDefectuosos();
+        System.out.println(sensoresMasDesfectuososP0);
 
         //ff. Mostrar por pantalla los sensores de "humedad" que hay en la planta2.
-
+        System.out.println("APARTADO FF) -----------------------------------------------------------------------------------------------------------");
+        System.out.println("Los sensores de 'humedad' que hay en la planta 2 son: " + planta2.sensoresTipo("humedad"));
 
         //gg. Mostrar por pantalla los sensores de "sonido" de la planta1.
+        System.out.println("APARTADO GG) -----------------------------------------------------------------------------------------------------------");
+        System.out.println("Los sensores de 'sonido' que hay en la planta 1 son: " + planta1.sensoresTipo("sonido"));
 
 
         //hh. Dar de alta la planta0 en el edificio1.
-
+        System.out.println("APARTADO HH) -----------------------------------------------------------------------------------------------------------");
+        System.out.println("planta0 en edificio1 -> " + edificio1.darAltaPlanta(planta0));
 
         //ii. Mostrar por pantalla las plantas que aún no están asignadas en el edificio.
-
+        System.out.println("APARTADO II) -----------------------------------------------------------------------------------------------------------");
+        int[] plantasII = edificio1.plantasNoAlta();
+        System.out.println("Las plantas que aun no han sido dadas de alta son: " + Arrays.toString(plantasII));
 
         //jj. Mostrar las plantas del edificio con más problemas.
+        System.out.println("APARTADO JJ) -----------------------------------------------------------------------------------------------------------");
 
 
         //kk. Mostrar las plantas del edificio más caras.
+        System.out.println("APARTADO KK) -----------------------------------------------------------------------------------------------------------");
 
 
     }
