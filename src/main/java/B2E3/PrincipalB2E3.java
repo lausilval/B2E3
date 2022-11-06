@@ -3,12 +3,13 @@ package B2E3;
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Set;
 
 public class PrincipalB2E3 {
     public static void main(String[] args) {
         // a. Crear los sensores indicados en el fichero Excel B2E3_instancias.xls.
-        Sensor sensor1 = new Sensor("100", "temperatura", new float[]{-5f, 35f}, 54.0f);
+        Sensor sensor1 = new Sensor("100", "temperatura", new float[]{-5f, 35f}, 54.4f);
         Sensor sensor2 = new Sensor("101", "temperatura", new float[]{-5f, 40}, 48.5f);
         Sensor sensor3 = new Sensor("102", "temperatura", new float[]{-5f, 40}, 80.0f);
         Sensor sensor4 = new Sensor("103", "temperatura", new float[]{-5f, 40}, 45.0f);
@@ -31,14 +32,14 @@ public class PrincipalB2E3 {
         Sensor sensor21 = new Sensor("302", "humedad", new float[]{0, 100}, 45.0f);
         Sensor sensor22 = new Sensor("303", "humedad", new float[]{0, 100}, 45.0f);
         Sensor sensor23 = new Sensor("304", "humedad", new float[]{0, 100}, 45.0f);
-        Sensor sensor24 = new Sensor("305", "humedad", new float[]{0, 80}, 5.0f);
-        Sensor sensor25 = new Sensor("306", "humedad", new float[]{0, 80}, 0.0f);
+        Sensor sensor24 = new Sensor("305", "humedad", new float[]{0, 80}, 45.0f);
+        Sensor sensor25 = new Sensor("306", "humedad", new float[]{0, 80}, 60.0f);
         Sensor sensor26 = new Sensor("109", "temperatura", new float[]{-10, 50}, 56.0f);
         Sensor sensor27 = new Sensor("110", "temperatura", new float[]{-10, 50}, 45.0f);
         Sensor sensor28 = new Sensor("209", "sonido", new float[]{0, 120}, 89.0f);
-        Sensor sensor29 = new Sensor("307", "humedad", new float[]{0, 80}, 4.0f);
-        Sensor sensor30 = new Sensor("308", "humedad", new float[]{0, 80}, 5.0f);
-        Sensor sensor31 = new Sensor("309", "humedad", new float[]{0, 80}, 4.0f);
+        Sensor sensor29 = new Sensor("307", "humedad", new float[]{0, 80}, 34.0f);
+        Sensor sensor30 = new Sensor("308", "humedad", new float[]{0, 80}, 45.0f);
+        Sensor sensor31 = new Sensor("309", "humedad", new float[]{0, 80}, 34.0f);
 
 
         //b. Crear las plantas indicadas en el fichero Excel B2E3_instancias.xls usando el constructor que tiene
@@ -62,48 +63,65 @@ public class PrincipalB2E3 {
 
         Estancia estancia1 = new Estancia("-100", planta_1);
         System.out.println("estancia " + estancia1.getNombre() + " sensor 10 --> " + estancia1.darAlta(sensor10));
+        sensor10.setEstancia(estancia1);
 
         Estancia estancia2 = new Estancia("-101", planta_1);
 
         Estancia estancia3 = new Estancia("-102", planta_1);
         System.out.println("estancia " + estancia3.getNombre() + " sensor 11 --> " + estancia3.darAlta(sensor11));
+        sensor11.setEstancia(estancia3);
 
         Estancia estancia4 = new Estancia("000", planta0);
         System.out.println("estancia  " + estancia4.getNombre() + " sensor  1 --> " + estancia4.darAlta(sensor1));
+        sensor1.setEstancia(estancia4);
 
         Estancia estancia5 = new Estancia("001", planta0);
         System.out.println("estancia  " + estancia5.getNombre() + " sensor  2 --> " + estancia5.darAlta(sensor2));
         System.out.println("estancia  " + estancia5.getNombre() + " sensor 12 --> " + estancia5.darAlta(sensor12));
+        sensor2.setEstancia(estancia5);
+        sensor12.setEstancia(estancia5);
 
         Estancia estancia6 = new Estancia("002", planta0);
         System.out.println("estancia  " + estancia6.getNombre() + " sensor  3 --> " + estancia6.darAlta(sensor3));
         System.out.println("estancia  " + estancia6.getNombre() + " sensor 16 --> " + estancia6.darAlta(sensor16));
+        sensor3.setEstancia(estancia6);
+        sensor16.setEstancia(estancia6);
 
         Estancia estancia7 = new Estancia("003", planta0);
         System.out.println("estancia  " + estancia7.getNombre() + " sensor  4 --> " + estancia7.darAlta(sensor4));
         System.out.println("estancia  " + estancia7.getNombre() + " sensor 17 --> " + estancia7.darAlta(sensor17));
+        sensor4.setEstancia(estancia7);
+        sensor17.setEstancia(estancia7);
 
         Estancia estancia8 = new Estancia("100", planta1);
         System.out.println("estancia  " + estancia8.getNombre() + " sensor  5 --> " + estancia8.darAlta(sensor5));
+        sensor5.setEstancia(estancia8);
 
         Estancia estancia9 = new Estancia("101", planta1);
         System.out.println("estancia  " + estancia9.getNombre() + " sensor  6 --> " + estancia9.darAlta(sensor6));
+        sensor6.setEstancia(estancia9);
 
         Estancia estancia10 = new Estancia("102", planta1);
         System.out.println("estancia  " + estancia10.getNombre() + " sensor  7 --> " + estancia10.darAlta(sensor7));
         System.out.println("estancia  " + estancia10.getNombre() + " sensor 13 --> " + estancia10.darAlta(sensor13));
+        sensor7.setEstancia(estancia10);
+        sensor13.setEstancia(estancia10);
 
 
         Estancia estancia11 = new Estancia("200", planta2);
         System.out.println("estancia  " + estancia11.getNombre() + " sensor  8 --> " + estancia11.darAlta(sensor8));
+        sensor8.setEstancia(estancia11);
 
         Estancia estancia12 = new Estancia("201", planta2);
         System.out.println("estancia  " + estancia12.getNombre() + " sensor  9 --> " + estancia12.darAlta(sensor9));
         System.out.println("estancia  " + estancia12.getNombre() + " sensor 14 --> " + estancia12.darAlta(sensor14));
+        sensor9.setEstancia(estancia12);
+        sensor14.setEstancia(estancia12);
 
 
         Estancia estancia13 = new Estancia("202", planta2);
         System.out.println("estancia  " + estancia13.getNombre() + " sensor 15 --> " + estancia13.darAlta(sensor15));
+        sensor15.setEstancia(estancia13);
 
 
         //e. Mostrar por pantalla las características de las estancias creadas en (d).
@@ -149,6 +167,8 @@ public class PrincipalB2E3 {
         ArrayList<Sensor> planta1_1823 = new ArrayList<>();
         planta1_1823.add(sensor18);
         planta1_1823.add(sensor23);
+        sensor18.setEstancia(estancia8);
+        sensor23.setEstancia(estancia8);
         planta1.darAltaSensor(estancia8.getNombre(), planta1_1823);
         //System.out.println(estancia8.toString());
 
@@ -156,6 +176,7 @@ public class PrincipalB2E3 {
         //argumentos el id de la estancia y Sensor.
         System.out.println("APARTADO I) -----------------------------------------------------------------------------------------------------------");
         planta1.darAltaSensor("101", sensor24);
+        sensor24.setEstancia(estancia9);
         //System.out.println(estancia9.toString());
 
         //j. Mostrar por pantalla las características de la planta1.
@@ -169,6 +190,9 @@ public class PrincipalB2E3 {
         planta_1.darAltaSensor("-101", sensor20);
         planta_1.darAltaSensor("-102", sensor21);
 
+        sensor19.setEstancia(estancia1);
+        sensor20.setEstancia(estancia2);
+        sensor21.setEstancia(estancia3);
         //l. Mostrar por pantalla las características de la planta_1.
         System.out.println("APARTADO L) -----------------------------------------------------------------------------------------------------------");
         System.out.println(planta_1.toString());
@@ -186,6 +210,7 @@ public class PrincipalB2E3 {
         //argumentos la instancia de Sensor.
         System.out.println("APARTADO N) -----------------------------------------------------------------------------------------------------------");
         planta2.darAltaSensor("200", sensor25);
+        sensor25.setEstancia(estancia11);
 
         //o. Mostrar por pantalla las características de la planta2.
         System.out.println("APARTADO O) -----------------------------------------------------------------------------------------------------------");
@@ -195,6 +220,7 @@ public class PrincipalB2E3 {
         //argumentos la instancia de Sensor.
         System.out.println("APARTADO P) -----------------------------------------------------------------------------------------------------------");
         planta0.darAltaSensor("000", sensor22);
+        sensor22.setEstancia(estancia4);
 
         //q. Mostrar por pantalla las características de la planta0.
         System.out.println("APARTADO Q) -----------------------------------------------------------------------------------------------------------");
@@ -222,6 +248,7 @@ public class PrincipalB2E3 {
         System.out.println(estancia11.toString());
 
         planta2.darBajaSensor("107", sensor26);
+        sensor26.setEstancia(estancia11);
 
         System.out.println("Despues de cambiar el sensor '107'(sensor8) por el '109'(sensor26)...");
         System.out.println(estancia11.toString());
@@ -236,6 +263,7 @@ public class PrincipalB2E3 {
         System.out.println(estancia9.toString());
 
         planta1.darBajaSensor("105", sensor27);
+        sensor27.setEstancia(estancia9);
 
         System.out.println("Despues de cambiar el sensor '105'(sensor6) por el '110'(sensor27)...");
         System.out.println(estancia9.toString());
@@ -250,6 +278,7 @@ public class PrincipalB2E3 {
         System.out.println(estancia1.toString());
 
         planta_1.darBajaSensor("200", sensor28);
+        sensor28.setEstancia(estancia1);
 
         System.out.println("Despues de cambiar el sensor '200'(sensor10) por el '209'(sensor28)...");
         System.out.println(estancia1.toString());
@@ -267,6 +296,8 @@ public class PrincipalB2E3 {
 
         planta0.darBajaSensor("303", sensor29);
 
+        sensor29.setEstancia(estancia4);
+
         System.out.println("Despues de cambiar el sensor '303'(sensor22) por el '307'(sensor29)...");
         System.out.println(estancia4.toString());
 
@@ -276,6 +307,7 @@ public class PrincipalB2E3 {
         System.out.println(estancia4.toString());
 
         planta0.darBajaSensor("307", sensor30);
+        sensor30.setEstancia(estancia4);
 
         System.out.println("Despues de cambiar el sensor '307'(sensor29) por el '308'(sensor30)...");
         System.out.println(estancia4.toString());
@@ -286,6 +318,7 @@ public class PrincipalB2E3 {
         System.out.println(estancia4.toString());
 
         planta0.darBajaSensor("308", sensor31);
+        sensor31.setEstancia(estancia4);
 
         System.out.println("Despues de cambiar el sensor '308'(sensor29) por el '309'(sensor30)...");
         System.out.println(estancia4.toString());
@@ -294,12 +327,10 @@ public class PrincipalB2E3 {
         System.out.println("APARTADO DD) -----------------------------------------------------------------------------------------------------------");
         System.out.println(planta0.toString());
 
-
-        /***TENER CUIDADO A PARTIR DE AQUI ***/
         //ee. Mostrar por pantalla los tipos de sensores más defectuosos de la planta0.
         System.out.println("APARTADO EE) -----------------------------------------------------------------------------------------------------------");
         Set<String> sensoresMasDesfectuososP0 = planta0.tipoSensoresMasDefectuosos();
-        System.out.println(sensoresMasDesfectuososP0);
+        System.out.println("Los tipos de sensores mas defectuosos son: " + sensoresMasDesfectuososP0);
 
         //ff. Mostrar por pantalla los sensores de "humedad" que hay en la planta2.
         System.out.println("APARTADO FF) -----------------------------------------------------------------------------------------------------------");
@@ -321,10 +352,21 @@ public class PrincipalB2E3 {
 
         //jj. Mostrar las plantas del edificio con más problemas.
         System.out.println("APARTADO JJ) -----------------------------------------------------------------------------------------------------------");
-
+        HashMap<Integer, Set<Estancia>> plantasProblemasJJ = edificio1.plantasMasProblemas();
+        System.out.println("Las plantas con mas problemas del edificio son: " );
+        for(Integer numPlanta : plantasProblemasJJ.keySet())
+        {
+            System.out.println("Planta: " + numPlanta);
+            Set<Estancia> estanciasPlanta = plantasProblemasJJ.get(numPlanta);
+            for(Estancia estan: estanciasPlanta)
+            {
+                System.out.println("\t" + estan);
+            }
+        }
 
         //kk. Mostrar las plantas del edificio más caras.
         System.out.println("APARTADO KK) -----------------------------------------------------------------------------------------------------------");
+        System.out.println("Las plantas del edificio mas caras son: " + edificio1.plantasMasCaras());
 
 
     }

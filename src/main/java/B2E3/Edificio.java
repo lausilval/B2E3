@@ -64,43 +64,61 @@ public class Edificio {
     }
 
     // SETTERS
-    public void setRango(int[] rango) {
-        if ((rango[0] >= -2) && (rango[1] <= 6)) {
-            this.rango = rango;
+    public void setRango(int[] rango)
+    {
+        if(rango != null) {
+            if ((rango[0] >= -2) && (rango[1] <= 6)) {
+                this.rango = rango;
+            }
         }
     }
 
     // METODOS FUNCIONALES
 
+    /**** ACTUALIZAR PRESUPUESTO ***/
+    private void ActualizarPresupuesto()
+    {
+        float res = 0f;
+        if (this.plantas != null) {
+            for (Integer numPlanta : plantas.keySet())
+            {
+                Planta planta = plantas.get(numPlanta);
+                if(planta.getPresupuesto() != 0f)
+                {
+                    res += planta.getPresupuesto();
+                }
+            }
+        }
+        this.presupuesto = res;
+    }
     // dar de alta una planta, teniendo
     //en cuenta las restricciones indicadas en los constructores.
     public boolean darAltaPlanta(Planta planta)
     {
-        if(plantas == null)
-        {
-            HashMap<Integer, Planta> plantaMap = new HashMap<>();
-            if((planta.getNumero() >= -2) && (planta.getNumero() <= 6))
-            {
-                plantaMap.put(planta.getNumero(), planta);
-                this.plantas = plantaMap;
-                return true;
-            }
-        }
-        else {
-            for(Integer numero : plantas.keySet())
-            {
-                Planta planta1 = plantas.get(numero);
-                if(planta1.getNumero() == planta.getNumero())
-                {
-                    return false;
+        if(planta != null) {
+            if (plantas == null) {
+                HashMap<Integer, Planta> plantaMap = new HashMap<>();
+                if ((planta.getNumero() >= -2) && (planta.getNumero() <= 6)) {
+                    plantaMap.put(planta.getNumero(), planta);
+                    this.plantas = plantaMap;
+                    ActualizarPresupuesto();
+                    return true;
                 }
+            } else {
+                for (Integer numero : plantas.keySet()) {
+                    Planta planta1 = plantas.get(numero);
+                    if (planta1.getNumero() == planta.getNumero()) {
+                        return false;
+                    }
 
+                }
+                if ((planta.getNumero() >= -2) && (planta.getNumero() <= 6)) {
+                    this.plantas.put(planta.getNumero(), planta);
+                    ActualizarPresupuesto();
+                    return true;
+                }
             }
-            if((planta.getNumero() >= -2) && (planta.getNumero() <= 6))
-            {
-                this.plantas.put(planta.getNumero(), planta);
-                return true;
-            }
+            return false;
         }
         return false;
     }
@@ -115,61 +133,88 @@ public class Edificio {
         // tienes un rango y tienes que ver que nº de ese rango no esta ocupado
         if(rango != null)
         {
-            for(int r=rango[0]; r <= rango[1] ; r++)
-            {
-                rangoAux.add(r);
-            }
-            ArrayList<Integer> aux = new ArrayList<>(plantas.keySet());
-            for(int j=0; j < rangoAux.size(); j++)
-            {
-                if(!aux.contains(rangoAux.get(j)))
-                {
-                    respuesta.add(rangoAux.get(j));
+            if(plantas != null) {
+                for (int r = rango[0]; r <= rango[1]; r++) {
+                    rangoAux.add(r);
                 }
+                ArrayList<Integer> aux = new ArrayList<>(plantas.keySet());
+                for (int j = 0; j < rangoAux.size(); j++) {
+                    if (!aux.contains(rangoAux.get(j))) {
+                        respuesta.add(rangoAux.get(j));
+                    }
+                }
+                int[] respuesta2 = new int[respuesta.size()];
+                for (int k = 0; k < respuesta.size(); k++) {
+                    respuesta2[k] = respuesta.get(k);
+                }
+                return respuesta2;
             }
-            int[] respuesta2 = new int[respuesta.size()];
-            for(int k=0; k < respuesta.size();k++)
-            {
-                respuesta2[k] = respuesta.get(k);
-            }
-            return respuesta2;
         }
         return null;
-
     }
 
     // obtiene las plantas que tienen un presupuesto mayor.
     public Set<Planta> plantasMasCaras() {
-        Set <Planta> respuesta = new HashSet<>();
-        float MaxPresupuesto = 0f;
-        int cont= 0;
-        for(Integer num: plantas.keySet())
-        {
-            Planta planta1 = plantas.get(num);
-            if(cont == 0)
-            {
-                if(planta1.getPresupuesto() != 0f)
-                {
-                    MaxPresupuesto = planta1.getPresupuesto();
-                    cont++;
+        if(plantas != null) {
+            Set<Planta> respuesta = new HashSet<>();
+            float MaxPresupuesto = 0f;
+            int cont = 0;
+            for (Integer num : plantas.keySet()) {
+                Planta planta1 = plantas.get(num);
+                if (cont == 0) {
+                    if (planta1.getPresupuesto() != 0f) {
+                        MaxPresupuesto = planta1.getPresupuesto();
+                        cont++;
+                    }
+                }
+                if (planta1.getPresupuesto() != 0f) {
+                    if (MaxPresupuesto < planta1.getPresupuesto()) {
+                        MaxPresupuesto = planta1.getPresupuesto();
+                        respuesta.add(planta1);
+                    }
                 }
             }
-            if(planta1.getPresupuesto() != 0f)
-            {
-                if(MaxPresupuesto < planta1.getPresupuesto())
-                {
-                    MaxPresupuesto = planta1.getPresupuesto();
-                    respuesta.add(planta1);
-                }
-            }
+            return respuesta;
         }
-        return respuesta;
+        return null;
     }
 
-    // devuelve el conjunto de estancias que tiene un mayor número de problemas en cada planta, donde la clave será
-    //el número de planta y los valores serán las estancias que cumplen con esa condición.
-    public HashMap<String, Estancia> plantasMasProblemas() {
-        return null;
+    // devuelve el conjunto de estancias que tiene un mayor número de problemas en cada planta, donde la clave
+    //será el número de planta y los valores serán el conjunto de estancias de cada planta que tienen un
+    //mayor número de problemas (en el caso de que haya más de una estancia con un mismo número).
+    public HashMap<Integer, Set<Estancia>> plantasMasProblemas()
+    {
+        if(plantas != null)
+        {
+            HashMap<Integer, Set<Estancia>> respuesta = new HashMap<>();
+            for(Integer numPlanta : plantas.keySet())
+            {
+                HashMap<Estancia, Integer> auxiliar = new HashMap<>();
+                HashMap<String, Sensor> sensoresConProblemasPlantas = plantas.get(numPlanta).getSensoresConProblemas();
+                Set<Estancia> auxiliar2 = new HashSet<>();
+                for(String id : sensoresConProblemasPlantas.keySet())
+                {
+                    int cont=0;
+                    Sensor sensor = sensoresConProblemasPlantas.get(id);
+                    Estancia estancia = sensor.getEstancia();
+                    cont++;
+                    auxiliar.put(estancia,cont);
+                }
+                int max = 0;
+                for(Estancia ids : auxiliar.keySet())
+                {
+                    Integer contId = auxiliar.get(ids);
+                    if(max <= contId)
+                    {
+                        max = contId;
+                        auxiliar2.add(ids);
+                    }
+                }
+                respuesta.put(numPlanta, auxiliar2);
+            }
+            return respuesta;
+        }
+        return  null;
     }
 
     @Override

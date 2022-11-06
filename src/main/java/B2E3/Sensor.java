@@ -76,7 +76,10 @@ public class Sensor
     /// estancia
 
     public void setEstancia(Estancia estancia) {
-        this.estancia = estancia;
+        if(estancia != null)
+        {
+            this.estancia = estancia;
+        }
     }
 
     public Estancia getEstancia() {
